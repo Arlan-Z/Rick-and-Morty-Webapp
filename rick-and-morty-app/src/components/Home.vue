@@ -2,10 +2,8 @@
     <div>
       <h1>Characters</h1>
       <div v-for="character in characters" :key="character.id">
-        <router-link :to="'/characters/' + character.id">
-          <img :src="character.image" :alt="character.name" />
-          <p>{{ character.name }}</p>
-        </router-link>
+        <img :src="character.image" :alt="character.name" />
+        <router-link :to="`/character/${character.id}`">{{ character.name }}</router-link>
       </div>
     </div>
   </template>

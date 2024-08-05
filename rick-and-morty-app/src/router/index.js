@@ -1,24 +1,23 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '@/views/Home.vue';
-import Characters from '@/views/Characters.vue';
-import CharacterDetail from '@/components/CharacterDetail.vue';
-import Episodes from '@/views/Episodes.vue';
-import EpisodeDetail from '@/components/EpisodeDetail.vue';
-import Locations from '@/views/Locations.vue';
-import LocationDetail from '@/components/LocationDetail.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import CharacterDetails from '../views/CharacterDetails.vue';
+import Episodes from '../views/Episodes.vue';
+import EpisodeDetails from '../views/EpisodeDetails.vue';
+import Locations from '../views/Locations.vue';
+import LocationDetails from '../views/LocationDetails.vue';
 
-Vue.use(Router);
+const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/character/:id', name: 'CharacterDetails', component: CharacterDetails },
+  { path: '/episodes', name: 'Episodes', component: Episodes },
+  { path: '/episode/:id', name: 'EpisodeDetails', component: EpisodeDetails },
+  { path: '/locations', name: 'Locations', component: Locations },
+  { path: '/location/:id', name: 'LocationDetails', component: LocationDetails },
+];
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    { path: '/', component: Home },
-    { path: '/characters', component: Characters },
-    { path: '/characters/:id', component: CharacterDetail },
-    { path: '/episodes', component: Episodes },
-    { path: '/episodes/:id', component: EpisodeDetail },
-    { path: '/locations', component: Locations },
-    { path: '/locations/:id', component: LocationDetail },
-  ],
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 });
+
+export default router;
