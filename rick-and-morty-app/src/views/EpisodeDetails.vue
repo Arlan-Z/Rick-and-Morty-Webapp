@@ -2,6 +2,7 @@
     <div v-if="episode">
       <h1>{{ episode.name }}</h1>
       <p>Air Date: {{ episode.air_date }}</p>
+      <p>Episode: {{ episode.episode}}</p>
       <h2>Characters</h2>
       <ul>
         <li v-for="character in episode.characters" :key="character">
