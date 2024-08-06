@@ -1,58 +1,65 @@
 <template>
   <div>
-    <h1>Characters</h1>
-    <div v-for="character in characters" :key="character.id">
-      <img :src="character.image" :alt="character.name" />
-      <router-link :to="`/character/${character.id}`">{{ character.name }}</router-link>
-    </div>
-
-    <div class="pagination">
-      <button @click="fetchCharacters(currentPage - 1)" :disabled="currentPage === 1">Previous</button>
-      <span>Page {{ currentPage }} of {{ totalPages }}</span>
-      <button @click="fetchCharacters(currentPage + 1)" :disabled="currentPage === totalPages">Next</button>
+    <h1>ABOUT THE SHOW</h1>
+    <div class="description">
+      <div class="text">
+        <p><strong>Rick and Morty</strong> (Eng. <em>Rick and Morty</em>) is an American <a href="https://en.wikipedia.org/wiki/Animated_series" target="_blank">animated series</a> created by <a href="https://en.wikipedia.org/wiki/Dan_Harmon" target="_blank">Dan Harmon</a> and <a href="https://en.wikipedia.org/wiki/Justin_Roiland" target="_blank">Justin Roiland</a>. The premiere took place on December 2, 2013, in the programming block <em>Adult Swim</em> on the channel <em>Cartoon Network</em>. The release of the <a href="https://en.wikipedia.org/wiki/List_of_Rick_and_Morty_episodes" target="_blank">6th season</a> took place on September 4, 2022.</p>
+        <ul>
+          <li>Genre: comedy, science fiction, adventure</li>
+          <li>Number of seasons: 7</li>
+          <li>Number of episodes: 71</li>
+          <li>Episode duration: 22 minutes</li>
+          <li>Authors: Dan Harmon, Justin Roiland</li>
+          <li>Directors: Jeff Myers, Bryan Newton, John Rice, Justin Roiland, etc.</li>
+          <li>Composer: Ryan Elder</li>
+          <li>Production: Justin Roiland's Solo Vanity, Card Productions, Dan Harmon Productions, Starburns Industries, etc.</li>
+          <li>Voice acting (English): Justin Roiland, Chris Parnell, Spencer Grammer, Sarah Chalke; (Russian): <a href="https://www.youtube.com/@sndk" target="_blank">Dmitry Syenduk</a></li>
+        </ul>
+      </div>
+      <div class="image">
+        <img src="@/assets/rick-and-morty-poster.png" alt="Rick and Morty Poster">
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
-  data() {
-    return {
-      characters: [],
-      currentPage: 1,
-      totalPages: 1,
-    };
-  },
-  created() {
-    this.fetchCharacters(this.currentPage);
-  },
-  methods: {
-    fetchCharacters(page) {
-      if (page < 1 || page > this.totalPages) return;
-      
-      axios.get(`https://rickandmortyapi.com/api/character/?page=${page}`)
-        .then(response => {
-          this.characters = response.data.results;
-          this.currentPage = page;
-          this.totalPages = response.data.info.pages;
-        });
-    },
-  },
+  name: 'Home',
 };
 </script>
 
-<style>
-/* Добавьте стили для улучшения отображения, если необходимо */
-.pagination {
-  margin-top: 20px;
+<style scoped>
+.description {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-button {
-  margin: 0 10px;
+.text {
+  flex: 1;
+}
+
+.text p {
+  margin: 0 0 20px 0;
+}
+
+.text ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.text ul li {
+  margin-bottom: 10px;
+}
+
+.image {
+  flex: 0 0 auto;
+  margin-left: 20px;
+}
+
+.image img {
+  max-width: 200px;
+  border: 1px solid #ccc;
 }
 </style>

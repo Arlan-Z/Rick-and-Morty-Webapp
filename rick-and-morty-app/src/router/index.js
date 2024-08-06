@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Characters from '../views/Characters.vue';
 import CharacterDetails from '../views/CharacterDetails.vue';
 import Episodes from '../views/Episodes.vue';
 import EpisodeDetails from '../views/EpisodeDetails.vue';
@@ -8,6 +9,7 @@ import LocationDetails from '../views/LocationDetails.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
+  { path: '/characters', name: 'Characters', component: Characters },
   { path: '/character/:id', name: 'CharacterDetails', component: CharacterDetails },
   { path: '/episodes', name: 'Episodes', component: Episodes },
   { path: '/episode/:id', name: 'EpisodeDetails', component: EpisodeDetails },
