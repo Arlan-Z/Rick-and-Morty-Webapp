@@ -81,9 +81,14 @@ h1 {
   margin: 0 auto 20px auto;
 }
 
+.character-info {
+  margin-bottom: 20px;
+}
+
 .character-info p {
   font-size: 1.1em;
   color: #555;
+  margin: 5px 0;
 }
 
 .character-info p strong {
@@ -109,7 +114,6 @@ h1 {
   text-decoration: underline;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 600px) {
   .character-details {
     padding: 10px;
