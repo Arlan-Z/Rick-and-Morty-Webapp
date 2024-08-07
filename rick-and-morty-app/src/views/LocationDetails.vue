@@ -1,10 +1,10 @@
 <template>
   <div v-if="location" class="location-details">
     <h1>{{ location.name }}</h1>
-    <p class="location-info"><strong>Type:</strong> {{ location.type }}</p>
-    <p class="location-info"><strong>Dimension:</strong> {{ location.dimension }}</p>
+    <p class="location-info"><strong>{{ $t('location.type') }}:</strong> {{ location.type }}</p>
+    <p class="location-info"><strong>{{ $t('location.dimension') }}:</strong> {{ location.dimension }}</p>
     
-    <h2>Residents</h2>
+    <h2>{{ $t('location.residents') }}</h2>
     <ul class="residents-list">
       <li v-for="resident in residents" :key="resident.id" class="resident-item">
         <router-link :to="`/character/${resident.id}`">{{ resident.name }}</router-link>

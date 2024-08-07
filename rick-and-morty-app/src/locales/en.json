@@ -1,0 +1,8 @@
+{
+    "location": {
+      "name": "Name",
+      "type": "Type",
+      "dimension": "Dimension",
+      "residents": "Residents"
+    }
+  }

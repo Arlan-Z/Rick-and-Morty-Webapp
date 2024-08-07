@@ -1,0 +1,8 @@
+{
+    "location": {
+      "name": "Имя",
+      "type": "Тип",
+      "dimension": "Измерение",
+      "residents": "Жители"
+    }
+  }
