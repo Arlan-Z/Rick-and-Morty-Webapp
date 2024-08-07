@@ -1,22 +1,24 @@
 <template>
-  <div v-if="character">
+  <div v-if="character" class="character-details">
     <h1>{{ character.name }}</h1>
-    <img :src="character.image" :alt="character.name" />
+    <img :src="character.image" :alt="character.name" class="character-image" />
 
-    <p><strong>Status:</strong> {{ character.status }}</p>
-    <p><strong>Species:</strong> {{ character.species }}</p>
-    <p><strong>Type:</strong> {{ character.type }}</p>
-    <p><strong>Gender:</strong> {{ character.gender }}</p>
-    <p><strong>Origin:</strong> 
-      <router-link :to="`/location/${extractLocationId(character.origin.url)}`">{{ character.origin.name }}</router-link>
-    </p>
-    <p><strong>Last Known Location:</strong> 
-      <router-link :to="`/location/${extractLocationId(character.location.url)}`">{{ character.location.name }}</router-link>
-    </p>
+    <div class="character-info">
+      <p><strong>Status:</strong> {{ character.status }}</p>
+      <p><strong>Species:</strong> {{ character.species }}</p>
+      <p><strong>Type:</strong> {{ character.type }}</p>
+      <p><strong>Gender:</strong> {{ character.gender }}</p>
+      <p><strong>Origin:</strong> 
+        <router-link :to="`/location/${extractLocationId(character.origin.url)}`">{{ character.origin.name }}</router-link>
+      </p>
+      <p><strong>Last Known Location:</strong> 
+        <router-link :to="`/location/${extractLocationId(character.location.url)}`">{{ character.location.name }}</router-link>
+      </p>
+    </div>
     
     <h2>Episodes</h2>
-    <ul>
-      <li v-for="episode in episodes" :key="episode.id">
+    <ul class="episodes-list">
+      <li v-for="episode in episodes" :key="episode.id" class="episode-item">
         <router-link :to="`/episode/${episode.id}`">{{ episode.name }}</router-link>
       </li>
     </ul>
@@ -55,21 +57,74 @@ export default {
 </script>
 
 <style scoped>
-ul {
+.character-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.character-image {
+  display: block;
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 0 auto 20px auto;
+}
+
+.character-info p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.character-info p strong {
+  color: #333;
+}
+
+.episodes-list {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.episode-item {
   margin-bottom: 10px;
 }
 
-a {
+.episode-item a {
   text-decoration: none;
   color: #1a73e8;
+  font-size: 1.1em;
 }
 
-a:hover {
+.episode-item a:hover {
   text-decoration: underline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .character-details {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .character-info p {
+    font-size: 1em;
+  }
+
+  .episode-item a {
+    font-size: 1em;
+  }
 }
 </style>

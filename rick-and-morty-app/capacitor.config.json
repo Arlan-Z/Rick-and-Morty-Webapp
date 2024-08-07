@@ -1,0 +1,5 @@
+{
+  "appId": "com.rickandmorty.app",
+  "appName": "rick-and-morty-app",
+  "webDir": "dist"
+}
