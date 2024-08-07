@@ -16,8 +16,8 @@
     
     <h2>Episodes</h2>
     <ul>
-      <li v-for="episode in character.episode" :key="episode">
-        <router-link :to="`/episode/${extractEpisodeId(episode)}`">{{ extractEpisodeId(episode) }}</router-link>
+      <li v-for="episode in episodes" :key="episode.id">
+        <router-link :to="`/episode/${episode.id}`">{{ episode.name }}</router-link>
       </li>
     </ul>
   </div>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       character: null,
+      episodes: [],
     };
   },
   created() {
@@ -38,16 +39,14 @@ export default {
     axios.get(`https://rickandmortyapi.com/api/character/${id}`)
       .then(response => {
         this.character = response.data;
+        return Promise.all(response.data.episode.map(url => axios.get(url)));
+      })
+      .then(episodeResponses => {
+        this.episodes = episodeResponses.map(response => response.data);
       });
   },
   methods: {
-    extractEpisodeId(url) {
-      // Функция для извлечения идентификатора эпизода из URL API
-      const parts = url.split('/');
-      return parts[parts.length - 1];
-    },
     extractLocationId(url) {
-      // Функция для извлечения идентификатора локации из URL API
       const parts = url.split('/');
       return parts[parts.length - 1];
     },
@@ -55,6 +54,22 @@ export default {
 };
 </script>
 
-<style>
-/* Добавьте стили для улучшения отображения, если необходимо */
+<style scoped>
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #1a73e8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 </style>
